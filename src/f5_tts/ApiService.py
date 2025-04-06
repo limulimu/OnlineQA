@@ -112,6 +112,11 @@ def FileUpload(id):
         except:
             print("Upload failed")
 
+def generate_uuid():
+    my_uuid = uuid.uuid4()
+    short_int = int(str(my_uuid.int)[:16])
+    return short_int
+
 # Define a request body model
 class QueryRequest(BaseModel):
     question: str
@@ -296,7 +301,7 @@ def GenVoice(item:GenItem):
     requested_path = os.path.abspath(os.path.join(GEN_DIR, "{}.wav".format(str(item.id))))
     
     wav, sr, spec = f5tts.infer(
-        ref_file=str(files("f5_tts").joinpath("infer/examples/basic/{}.wav".format(item.sp_id)),
+        ref_file=str(files("f5_tts").joinpath("infer/examples/basic/{}.wav".format(item.sp_id))),
         ref_text="张小明早上骑着白马飞过桥，看见一群绿鸭子在水中游，忽然听到天空中飞机轰鸣，对面的小孩说，九月的月亮真亮",
         gen_text=item.message,
         file_wave=requested_path,
@@ -322,10 +327,7 @@ def GenVoice(item:GenItem):
     #     logger.info(f"WAV file saved as {f.name}, size: {len(audio_chunk)} bytes")
 
 
-def generate_uuid():
-    my_uuid = uuid.uuid4()
-    short_int = int(str(my_uuid.int)[:16])
-    return short_int
+
 
 
 
