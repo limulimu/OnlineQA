@@ -55,19 +55,20 @@ model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 collection_name = "qa_collection"
 
 # Detect the operating system
-os_name = platform.system()
-
+# os_name = platform.system()
+BASE_DIR = "./tests"
+GEN_DIR = "./tests"
 # Set directory paths based on OS
-if os_name == "Linux":
-    BASE_DIR = "./files"
-    GEN_DIR = "./files"
-elif os_name == "Windows":
-    BASE_DIR = "./files"
-    GEN_DIR = "./files"
-else:
-    # Default fallback (you can modify this as needed)
-    BASE_DIR = "./"
-    GEN_DIR = "./"
+# if os_name == "Linux":
+#     BASE_DIR = "./tests"
+#     GEN_DIR = "./tests"
+# elif os_name == "Windows":
+#     BASE_DIR = "./files"
+#     GEN_DIR = "./files"
+# else:
+#     # Default fallback (you can modify this as needed)
+#     BASE_DIR = "./"
+#     GEN_DIR = "./"
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s.%(msecs)03d - %(name)s - %(levelname)s - %(message)s",
