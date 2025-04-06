@@ -59,11 +59,11 @@ os_name = platform.system()
 
 # Set directory paths based on OS
 if os_name == "Linux":
-    BASE_DIR = "/root/files"
-    GEN_DIR = "/root/files"
+    BASE_DIR = "./files"
+    GEN_DIR = "./files"
 elif os_name == "Windows":
-    BASE_DIR = "./"
-    GEN_DIR = "./"
+    BASE_DIR = "./files"
+    GEN_DIR = "./files"
 else:
     # Default fallback (you can modify this as needed)
     BASE_DIR = "./"
