@@ -49,8 +49,8 @@ app = FastAPI()
 f5tts = F5TTS()
 
 
-# client = QdrantClient(path="vectors")
-client = QdrantClient(url="http://localhost:6333")
+client = QdrantClient(path="vectors")
+# client = QdrantClient(url="http://localhost:6333")
 model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 collection_name = "qa_collection"
 
