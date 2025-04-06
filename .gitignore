@@ -1,11 +1,5 @@
 # Customed
-.vscode/
-tests/
-runs/
-data/
-ckpts/
-wandb/
-results/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
