@@ -72,8 +72,8 @@ app = FastAPI(lifespan=lifespan)
 
 # Detect the operating system
 # os_name = platform.system()
-BASE_DIR = "./tests"
-GEN_DIR = "./tests"
+BASE_DIR = "./"
+GEN_DIR = "./"
 
 
 logging.basicConfig(level=logging.INFO,
