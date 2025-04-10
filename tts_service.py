@@ -6,7 +6,7 @@ import shutil
 import uuid
 from contextlib import asynccontextmanager
 from importlib.resources import files
-
+import torch
 # Third party imports
 import cn2an
 import librosa
@@ -288,15 +288,15 @@ def GenVoice(item:GenItem):
     logger.info(item.message)
     # r_audio, r_text = preprocess_ref_audio_text(ref_audio.format(str(item.sp_id)), ref_text)
     requested_path = os.path.abspath(os.path.join(GEN_DIR, "{}.wav".format(str(item.id))))
-    
-    wav, sr, spec = f5tts.infer(
-        ref_file="./{}.wav".format(item.sp_id),
-        ref_text="张小明早上骑着白马飞过桥，看见一群绿鸭子在水中游，忽然听到天空中飞机轰鸣，对面的小孩说，九月的月亮真亮",
-        gen_text=item.message,
-        file_wave=requested_path,
-        # file_spec=str(files("f5_tts").joinpath("../../tests/api_out.png")),
-        seed=None,
-    )
+    with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
+        wav, sr, spec = f5tts.infer(
+            ref_file="./{}.wav".format(item.sp_id),
+            ref_text="张小明早上骑着白马飞过桥，看见一群绿鸭子在水中游，忽然听到天空中飞机轰鸣，对面的小孩说，九月的月亮真亮",
+            gen_text=item.message,
+            file_wave=requested_path,
+            # file_spec=str(files("f5_tts").joinpath("../../tests/api_out.png")),
+            seed=None,
+        )
 
     # # # Load reference audio
     # audio, sr = torchaudio.load(r_audio)
